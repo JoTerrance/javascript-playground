@@ -1,10 +1,28 @@
+ function hola() {
+            alert("Hola!"); // aparece una alerta en vez de en la consola
+            console.log("Hola!");
+            var script = document.createElement('script');
+            script.src = 'path/to/script.js';
+            document.body.appendChild(script);
+        }
+   document.getElementById("clear").addEventListener("click", clearOutput, false);
+
+function onboyIsloaded() {
+	const div = document.createElement('div');
+	div.textContent = "New Element";
+	div.style.color = 'red';
+	document.querySelector('h1').appendChild(div);
+}
+
+
+
 function testVariables() {
 	let output = '';
 	let a = 10;
 	const b = 'Hello';
 	var c = true;
-	output += `let a = ${a}<br>`;
-	output += `const b = ${b}<br>`;
+	output += "let a = ${a}<br>";
+	output += 'const b = ${b}<br>';
 	output += `var c = ${c}<br>`;
 	showOutput(output);
 }
@@ -49,12 +67,33 @@ function showOutput(html) {
     //document.getElementById('titulo').style.color = 'blue';
 }
 
-document.getElementById('alert').addEventListener('click', function() {
+document.getElementById('buttonAlert').addEventListener('click', function() {
     alert('Button clicked!');
-    console.log('Alert button was clicked.');
-});
+    console.log('Alert button button was clicked.');
+}, true);
 
-document.getElementById('alert2').addEventListener('click', function() {
+document.getElementById('divAlert').addEventListener('click', function() {
     alert('Div clicked!');
-    console.log('Alert2 div was clicked.');
+    console.log('DivAlert was clicked.');
+}, true);
+
+document.getElementById('divAlert').removeEventListener('click');
+
+let signupForm = document.querySelector('[name="signup"]');
+console.log(signupForm);
+ signupForm = document.querySelector('.container form');
+ console.log(signupForm);
+ signupForm = document.querySelector('#nameForm');
+ console.log(signupForm);
+
+signupForm.addEventListener("submit", function(event) {
+  const nameInput = document.getElementById('name');
+	const name = nameInput.value.trim();
+	//name lenght must be greater than 3
+	if (name.length < 3) {
+		alert('Name must be at least 3 characters long.');
+		event.preventDefault(); // Prevent form submission
+		window.location.href = 'www.github.com';
+		return false;
+	}
 });
